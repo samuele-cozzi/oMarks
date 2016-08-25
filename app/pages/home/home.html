@@ -4,13 +4,54 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="home">
-  <ion-card *ngFor="let item of marks; let idx = index" >
-    <div>
-      <img  src="img/card-saopaolo.png"/>
-      <div class="card-title">{{idx}} - {{item.value.given_title}}</div>
-      <div class="card-subtitle">{{item.value.excerpt}}</div>
-    </div>
-  </ion-card>
+<ion-content padding class="card-background-page">
+  <ion-row responsive-sm *ngFor="let rows of marks">
+    <ion-col width-20 *ngFor="let item of rows">
+      <!--<ion-card (click)="open(item.value.given_url, $event)">
+        <img  *ngIf="item.value.has_image == 0" src="https://orchestrate.io/share.png"/>
+        <img  *ngIf="item.value.has_image == 1" src="{{item.value.image.src}}"/>
+        <div class="card-title">{{item.value.given_title}}</div>
+        <div class="card-subtitle">{{item.value.excerpt}}</div>
+      </ion-card>-->
+
+      <ion-card (click)="open(item.value.given_url, $event)">
+
+        <img  *ngIf="item.value.has_image == 0" src="https://orchestrate.io/share.png"/>
+        <img  *ngIf="item.value.has_image == 1" src="{{item.value.image.src}}"/>
+
+        <ion-card-content>
+          <h2 class="card-title">
+            {{item.value.given_title}}
+          </h2>
+          <p>
+            {{item.value.excerpt}}
+          </p>
+        </ion-card-content>
+
+        <!--<ion-row no-padding>
+          <ion-col>
+            <button clear small danger>
+              <ion-icon name='star'></ion-icon>
+              Favorite
+            </button>
+          </ion-col>
+          <ion-col text-center>
+            <button clear small danger>
+              <ion-icon name='musical-notes'></ion-icon>
+              Listen
+            </button>
+          </ion-col>
+          <ion-col text-right>
+            <button clear small danger>
+              <ion-icon name='share-alt'></ion-icon>
+              Share
+            </button>
+          </ion-col>
+        </ion-row>-->
+
+      </ion-card>
+
+    </ion-col>
+  </ion-row>
   
 </ion-content>

@@ -18,10 +18,19 @@ export class HomePage implements OnInit {
     this.getDashboard();
   }
 
+  open(url,event){
+    console.log(url);
+    console.log(event);
+    window.open(url);
+  }
+
   getDashboard(): void {
     this.orchestrateServices.get_dashboard().then(items => {
       console.log(items);
-      this.marks = items.results;
+      var newArr = [];
+      while(items.results.length) newArr.push(items.results.splice(0,5));
+      this.marks = newArr;
+      console.log(this.marks);
     });
   }
 }

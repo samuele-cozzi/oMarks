@@ -24,7 +24,7 @@ export class OmarksOrchestrateService {
             'Authorization': this.service_key
         });
 
-        return this.http.get(this.service_url, {headers: headers})
+        return this.http.get(this.service_url + '?limit=100', {headers: headers})
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);
