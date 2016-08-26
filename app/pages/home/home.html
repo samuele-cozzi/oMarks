@@ -7,24 +7,24 @@
 <ion-content padding class="card-background-page">
   <ion-row responsive-sm *ngFor="let rows of marks">
     <ion-col width-20 *ngFor="let item of rows">
-      <!--<ion-card (click)="open(item.value.given_url, $event)">
-        <img  *ngIf="item.value.has_image == 0" src="https://orchestrate.io/share.png"/>
-        <img  *ngIf="item.value.has_image == 1" src="{{item.value.image.src}}"/>
-        <div class="card-title">{{item.value.given_title}}</div>
-        <div class="card-subtitle">{{item.value.excerpt}}</div>
+      <!--<ion-card (click)="open(item.given_url, $event)">
+        <img  *ngIf="item.has_image == 0" src="https://orchestrate.io/share.png"/>
+        <img  *ngIf="item.has_image == 1" src="{{item.image.src}}"/>
+        <div class="card-title">{{item.given_title}}</div>
+        <div class="card-subtitle">{{item.excerpt}}</div>
       </ion-card>-->
 
-      <ion-card (click)="open(item.value.given_url, $event)">
-
-        <img  *ngIf="item.value.has_image == 0" src="https://orchestrate.io/share.png"/>
-        <img  *ngIf="item.value.has_image == 1" src="{{item.value.image.src}}"/>
+      <ion-card (click)="open(item.given_url, $event)">
+        
+        <img  *ngIf="item && item.has_image == 0" src="https://orchestrate.io/share.png"/>
+        <img  *ngIf="item && item.has_image == 1" src="{{item.image.src}}"/>
 
         <ion-card-content>
           <h2 class="card-title">
-            {{item.value.given_title}}
+            {{item.given_title}}
           </h2>
           <p>
-            {{item.value.excerpt}}
+            {{item.excerpt}}
           </p>
         </ion-card-content>
 

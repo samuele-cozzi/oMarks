@@ -3,12 +3,12 @@ import { Http, Headers }         from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class OmarksOrchestrateService {
+export class OmarksAlgoliaService {
 
-    //private service_url: string = "https://api.orchestrate.io/v0/pMarks";
-    private service_url: string = "/orchestrate/pMarks";
+    private service_url: string = "https://M90FC3UY18.algolia.net/1/indexes/oMarks";
+    //private service_url: string = "/algolia/pMarks";
 
-    private service_key: string = "Basic OTI2MGQzNzMtYjEyMC00YzY2LThlNTQtNTZjMmNlNjNhYjk2Og==";
+    private service_key: string = "10c0596a79389d1e359ea13707208c4a";
     
     constructor(private http: Http) { }
 
@@ -21,10 +21,11 @@ export class OmarksOrchestrateService {
         let headers = new Headers({
             'Content-Type': 'application/json',
             'Accept': 'application/JSON',
-            'Authorization': this.service_key
+            'X-Algolia-API-Key': this.service_key,
+            'X-Algolia-Application-Id': 'M90FC3UY18'
         });
 
-        return this.http.get(this.service_url + '?limit=100', {headers: headers})
+        return this.http.get(this.service_url, {headers: headers})
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);
@@ -34,10 +35,11 @@ export class OmarksOrchestrateService {
         let headers = new Headers({
             'Content-Type': 'application/json',
             'Accept': 'application/JSON',
-            'Authorization': this.service_key
+            'X-Algolia-API-Key': this.service_key,
+            'X-Algolia-Application-Id': 'M90FC3UY18'
         });
 
-        return this.http.get(this.service_url + '?query=*'+ query + '*&limit=100', {headers: headers})
+        return this.http.get(this.service_url + '?query='+ query, {headers: headers})
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);
