@@ -1,5 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NavController} from 'ionic-angular';
+
+import {SearchDetailPage} from '../search_detail/search_detail';
 
 import {OmarksOrchestrateService} from '../../services/omarks.orchestrate';
 import {OmarksAlgoliaService} from '../../services/omarks.algolia';
@@ -8,12 +10,17 @@ import {OmarksAlgoliaService} from '../../services/omarks.algolia';
   templateUrl: 'build/pages/search/search.html',
   providers: [OmarksOrchestrateService, OmarksAlgoliaService]
 })
-export class SearchPage {
+export class SearchPage  implements OnInit {
   searchQuery: string = '';
   items: string[];
+  facets: any[];
 
   constructor(private navCtrl: NavController, private searchServices: OmarksAlgoliaService) {
     this.items = [];
+  }
+
+  ngOnInit(): void {
+    this.searchFacets();
   }
 
   searchItems(event) {
@@ -30,5 +37,22 @@ export class SearchPage {
     }
 
     console.log(this.items.length);
+  }
+
+  searchFacets() {
+    this.searchServices.get_facets().then(items => {
+      this.facets = items;
+    });
+  }
+
+  goto(key,value){
+    this.navCtrl.push(SearchDetailPage, {
+      key: key,
+      value: value
+    });
+  }
+
+  open(url,event){
+    window.open(url);
   }
 }

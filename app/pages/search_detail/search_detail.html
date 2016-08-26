@@ -1,12 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{query}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
 
 <ion-content padding class="search">
-  <ion-searchbar (ionInput)="searchItems($event)"></ion-searchbar>
-
-  <ion-list *ngIf="items.length == 0" >
-    <ion-item *ngFor="let facet of facets" (click)="goto(facet.key, facet.value)">
-      <ion-icon name="folder" item-left ></ion-icon>
-        {{facet.value}}
-    </ion-item>
+  <ion-list *ngIf="items.length == 0">
+    No Results
   </ion-list>
 
   <ion-list *ngIf="items.length > 0">

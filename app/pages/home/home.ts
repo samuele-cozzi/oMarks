@@ -20,8 +20,6 @@ export class HomePage implements OnInit {
   }
 
   open(url,event){
-    console.log(url);
-    console.log(event);
     window.open(url);
   }
 
