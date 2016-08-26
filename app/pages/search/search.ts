@@ -5,10 +5,10 @@ import {OmarksOrchestrateService} from '../../services/omarks.orchestrate';
 import {OmarksAlgoliaService} from '../../services/omarks.algolia';
 
 @Component({
-  templateUrl: 'build/pages/about/about.html',
+  templateUrl: 'build/pages/search/search.html',
   providers: [OmarksOrchestrateService, OmarksAlgoliaService]
 })
-export class AboutPage {
+export class SearchPage {
   searchQuery: string = '';
   items: string[];
 
