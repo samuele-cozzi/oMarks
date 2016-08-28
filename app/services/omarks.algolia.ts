@@ -1,23 +1,34 @@
 import { Injectable }   from '@angular/core';
 import { Http, Headers }         from '@angular/http';
+import {Platform, ionicBootstrap, Storage, SqlStorage} from 'ionic-angular';
 import 'rxjs/add/operator/toPromise';
+import {AppSettings} from '../config/app.settings';
 
 @Injectable()
 export class OmarksAlgoliaService {
 
-    private service_url: string = "https://M90FC3UY18.algolia.net/1/indexes/oMarks";
-    //private service_url: string = "/algolia/pMarks";
+    public index: string;
+    public application_id: string;
+    public api_key: string;
 
-    private service_key: string = "10c0596a79389d1e359ea13707208c4a";
-    
-    private headers = new Headers({
+    private service_url: string;
+    private headers: Headers;
+
+    constructor(private http: Http, private settings: AppSettings) { 
+
+        this.index = settings.getIndex();
+        this.application_id = settings.getApplicationId();
+        this.api_key = settings.getApiKey();
+
+        this.service_url = 'https://' + this.application_id + '.algolia.net/1/indexes/' + this.index;
+
+        this.headers = new Headers({
             'Content-Type': 'application/json',
             'Accept': 'application/JSON',
-            'X-Algolia-API-Key': this.service_key,
+            'X-Algolia-API-Key': this.api_key,
             'X-Algolia-Application-Id': 'M90FC3UY18'
         });
-
-    constructor(private http: Http) { }
+    }
 
     private handleError(error: any): Promise<any> {
         console.log('An error occurred', error);

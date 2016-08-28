@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController} from 'ionic-angular';
 
-import {OmarksOrchestrateService} from '../../services/omarks.orchestrate';
 import {OmarksAlgoliaService} from '../../services/omarks.algolia';
 
 @Component({
   templateUrl: 'build/pages/home/home.html',
-  providers: [OmarksOrchestrateService, OmarksAlgoliaService]
+  providers: [OmarksAlgoliaService]
 })
 export class HomePage implements OnInit {
 

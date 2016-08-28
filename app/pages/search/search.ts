@@ -3,12 +3,11 @@ import {NavController} from 'ionic-angular';
 
 import {SearchDetailPage} from '../search_detail/search_detail';
 
-import {OmarksOrchestrateService} from '../../services/omarks.orchestrate';
 import {OmarksAlgoliaService} from '../../services/omarks.algolia';
 
 @Component({
   templateUrl: 'build/pages/search/search.html',
-  providers: [OmarksOrchestrateService, OmarksAlgoliaService]
+  providers: [OmarksAlgoliaService]
 })
 export class SearchPage  implements OnInit {
   searchQuery: string = '';

@@ -1,7 +1,9 @@
 import {Component} from '@angular/core';
-import {Platform, ionicBootstrap} from 'ionic-angular';
+import {Platform, ionicBootstrap, Storage, SqlStorage} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {TabsPage} from './pages/tabs/tabs';
+import {LoginPage} from './pages/login/login';
+import {AppSettings} from './config/app.settings';
 
 
 @Component({
@@ -11,8 +13,19 @@ export class MyApp {
 
   private rootPage: any;
 
-  constructor(private platform: Platform) {
-    this.rootPage = TabsPage;
+  constructor(private platform: Platform, private settings: AppSettings) {
+    
+    let storage = new Storage(SqlStorage);
+    let user = storage.get('settings').then(user => {
+      if(user)
+      {
+        this.rootPage = TabsPage;
+      }
+      else
+      {
+        this.rootPage = LoginPage;
+      }    
+    });
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -22,4 +35,4 @@ export class MyApp {
   }
 }
 
-ionicBootstrap(MyApp);
+ionicBootstrap(MyApp, [AppSettings]);
