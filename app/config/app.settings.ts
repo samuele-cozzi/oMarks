@@ -1,27 +1,15 @@
 import { Injectable } from '@angular/core';
 import {Storage, SqlStorage} from 'ionic-angular';
-import { Observable } from 'rxjs/Observable';
+
+import {AlgoliaSetting} from '../models/algolia_setting';
 
 @Injectable()
 export class AppSettings {
-    public index: string;
-    public application_id: string;
-    public api_key: string;
+    private index: string;
+    private application_id: string;
+    private api_key: string;
 
-    constructor() {
-        let storage = new Storage(SqlStorage);
-        storage.get('settings')
-            .then(settings => {
-                let _settings = JSON.parse(settings);
-                this.index = _settings.index;
-                this.application_id = _settings.application_id;
-                this.api_key = _settings.api_key;
-            })
-            .catch((error:any) => {
-                console.log(error);
-                //return Observable.throw(error.json().error || ‘Server error’);
-            });
-    }
+    constructor() { }
 
     load() {
         let storage = new Storage(SqlStorage);
@@ -36,9 +24,23 @@ export class AppSettings {
                 })
                 .catch((error:any) => {
                     console.log(error);
+                    resolve(true);
                     //return Observable.throw(error.json().error || ‘Server error’);
                 });
         });
+    }
+
+    SaveAlgoliaSettings(algolia_setting: AlgoliaSetting){
+        let storage = new Storage(SqlStorage);
+        storage.set('settings', JSON.stringify(algolia_setting));
+        this.index = algolia_setting.index;
+        this.application_id = algolia_setting.application_id;
+        this.api_key = algolia_setting.api_key;
+    }
+
+    DeleteAlgoliaSettings(){
+        let storage = new Storage(SqlStorage);
+        storage.query('delete from kv');
     }
 
     getIndex(){

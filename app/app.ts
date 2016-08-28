@@ -15,17 +15,8 @@ export class MyApp {
 
   constructor(private platform: Platform, private settings: AppSettings) {
     
-    let storage = new Storage(SqlStorage);
-    let user = storage.get('settings').then(user => {
-      if(user)
-      {
-        this.rootPage = TabsPage;
-      }
-      else
-      {
-        this.rootPage = LoginPage;
-      }    
-    });
+    settings.load().then(ev => {this.rootPage = TabsPage; })
+     
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
