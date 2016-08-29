@@ -28,7 +28,8 @@
 
         <ion-item>
           <ion-avatar item-left>
-            <img src="https://img.readitlater.com/i/{{item.resolved_url.split('/')[2]}}/favicon.ico?f=fi">
+            <!--<img src="https://img.readitlater.com/i/{{item.resolved_url.split('/')[2]}}/favicon.ico?f=fi"/>-->
+            <img src="https://icons.better-idea.org/icon?url={{item.resolved_url.split('/')[2]}}&size=120" />
           </ion-avatar>
           <h2>{{item.resolved_title}}</h2>
           <p>{{item.resolved_url.split("/")[2]}}</p>
@@ -41,25 +42,13 @@
         </section>
 
         <ion-item>
-          <ion-row>
-            <ion-col>
-              <button primary clear small>
-                <ion-icon name="thumbs-up"></ion-icon>
-                <div>12 Likes</div>
+              <button primary clear item-right>
+                <ion-icon name="create"></ion-icon>
               </button>
-            </ion-col>
-            <ion-col>
-              <button primary clear small>
-                <ion-icon name="text"></ion-icon>
-                <div>4 Comments</div>
+              <button clear primary item-right>
+                <ion-icon name="code"></ion-icon>
               </button>
-            </ion-col>
-            <ion-col center text-center>
-              <ion-note>
-                11h ago
-              </ion-note>
-            </ion-col>
-          </ion-row>
+  
         </ion-item>
 
       </ion-card>
