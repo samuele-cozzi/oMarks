@@ -7,14 +7,8 @@
 <ion-content padding class="card-background-page">
   <ion-row responsive-md *ngFor="let rows of marks">
     <ion-col width-20 *ngFor="let item of rows">
-      <!--<ion-card (click)="open(item.given_url, $event)">
-        <img  *ngIf="item.has_image == 0" src="https://orchestrate.io/share.png"/>
-        <img  *ngIf="item.has_image == 1" src="{{item.image.src}}"/>
-        <div class="card-title">{{item.given_title}}</div>
-        <div class="card-subtitle">{{item.excerpt}}</div>
-      </ion-card>-->
 
-      <ion-card (click)="open(item.given_url, $event)">
+      <!--<ion-card (click)="open(item.given_url, $event)">
         
         <img  *ngIf="item && item.has_image == 0" src="https://orchestrate.io/share.png"/>
         <img  *ngIf="item && item.has_image == 1" src="{{item.image.src}}"/>
@@ -28,26 +22,45 @@
           </p>
         </ion-card-content>
 
-        <!--<ion-row no-padding>
-          <ion-col>
-            <button clear small danger>
-              <ion-icon name='star'></ion-icon>
-              Favorite
-            </button>
-          </ion-col>
-          <ion-col text-center>
-            <button clear small danger>
-              <ion-icon name='musical-notes'></ion-icon>
-              Listen
-            </button>
-          </ion-col>
-          <ion-col text-right>
-            <button clear small danger>
-              <ion-icon name='share-alt'></ion-icon>
-              Share
-            </button>
-          </ion-col>
-        </ion-row>-->
+      </ion-card>-->
+
+      <ion-card (click)="open(item.given_url, $event)">
+
+        <ion-item>
+          <ion-avatar item-left>
+            <img src="https://img.readitlater.com/i/{{item.resolved_url.split('/')[2]}}/favicon.ico?f=fi">
+          </ion-avatar>
+          <h2>{{item.resolved_title}}</h2>
+          <p>{{item.resolved_url.split("/")[2]}}</p>
+        </ion-item>
+
+        <ion-card-content  *ngIf="item && item.has_image == 0">{{item.excerpt}}</ion-card-content>
+        <ion-card-content  *ngIf="!item">{{item.excerpt}}</ion-card-content>
+        <section *ngIf="item && item.has_image == 1">
+          <img  src="{{item.image.src}}"/>
+        </section>
+
+        <ion-item>
+          <ion-row>
+            <ion-col>
+              <button primary clear small>
+                <ion-icon name="thumbs-up"></ion-icon>
+                <div>12 Likes</div>
+              </button>
+            </ion-col>
+            <ion-col>
+              <button primary clear small>
+                <ion-icon name="text"></ion-icon>
+                <div>4 Comments</div>
+              </button>
+            </ion-col>
+            <ion-col center text-center>
+              <ion-note>
+                11h ago
+              </ion-note>
+            </ion-col>
+          </ion-row>
+        </ion-item>
 
       </ion-card>
 
