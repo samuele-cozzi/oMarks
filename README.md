@@ -36,4 +36,4 @@ if not install [nvm](https://github.com/creationix/nvm) to get node going on you
 * Pocket
 
 ## License
-[MIT](LICENSE.txt)
+[MIT](LICENSE)
