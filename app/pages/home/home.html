@@ -8,14 +8,13 @@
   <div class="content">
     <ul>
       <li *ngFor="let item of marks">
-        <ion-card (click)="open(item.given_url, $event)">
-
+        <ion-card >
+          <div (click)="open(item.given_url, $event)">
           <ion-item>
             <ion-avatar item-left>
-              <!--<img src="https://img.readitlater.com/i/{{item.resolved_url.split('/')[2]}}/favicon.ico?f=fi"/>-->
               <img src="https://icons.better-idea.org/icon?url={{item.resolved_url.split('/')[2]}}&size=120" />
             </ion-avatar>
-            <h2>{{item.resolved_title}}</h2>
+            <h2>{{item.given_title}}</h2>
             <p>{{item.resolved_url.split("/")[2]}}</p>
           </ion-item>
 
@@ -24,15 +23,17 @@
           <section *ngIf="item && item.has_image == 1">
             <img  src="{{item.image.src}}"/>
           </section>
-
+          </div>
           <ion-item>
-                <button primary clear item-right>
-                  <ion-icon name="create"></ion-icon>
-                </button>
-                <button clear primary item-right>
-                  <ion-icon name="code"></ion-icon>
-                </button>
-    
+              <button primary clear item-right>
+                <ion-icon name="md-star"></ion-icon>
+              </button>
+              <button primary clear item-right>
+                <ion-icon name="create"></ion-icon>
+              </button>
+              <button clear primary item-right (click)="editCode(item)">
+                <ion-icon name="code"></ion-icon>
+              </button>
           </ion-item>
 
         </ion-card>

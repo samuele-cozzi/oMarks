@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController} from 'ionic-angular';
 
+import {CodeItemPage} from '../code_item/code_item'
 import {OmarksAlgoliaService} from '../../services/omarks.algolia';
 
 @Component({
@@ -24,11 +25,14 @@ export class HomePage implements OnInit {
 
   getDashboard(): void {
     this.searchServices.get_dashboard().then(items => {
-      // var newArr = [];
-      // while(items.hits.length) newArr.push(items.hits.splice(0,5));
-      // this.marks = newArr;
-      console.log(items.hits);
-      this.marks = items.hits;
+      console.log(items);
+      this.marks = items;
+    });
+  }
+
+  editCode(item){
+    this.navCtrl.push(CodeItemPage, {
+      item: JSON.stringify(item, null, 2)
     });
   }
 }

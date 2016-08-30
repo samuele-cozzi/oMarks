@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 
 import {OmarksAlgoliaService} from '../../services/omarks.algolia';
+import {CodeItemPage} from '../code_item/code_item'
 
 @Component({
   templateUrl: 'build/pages/search_detail/search_detail.html',
@@ -31,5 +32,11 @@ export class SearchDetailPage implements OnInit{
 
   open(url,event){
     window.open(url);
+  }
+
+  editCode(item){
+    this.navCtrl.push(CodeItemPage, {
+      item: JSON.stringify(item, null, 2)
+    });
   }
 }

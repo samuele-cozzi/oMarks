@@ -14,14 +14,24 @@
   </ion-list>
 
   <ion-list *ngIf="items.length > 0">
-    <ion-item *ngFor="let item of items" (click)="open(item.given_url, $event)">
-      <ion-thumbnail item-left>
-        <img  *ngIf="item.has_image == 0" src="https://orchestrate.io/share.png"/>
-        <img  *ngIf="item.has_image == 1" src="{{item.image.src}}"/>
-      </ion-thumbnail>
-      <h2>{{item.given_title}}</h2>
-      <p>{{item.excerpt}}</p>
-      <button clear item-right>View</button>
+    <ion-item *ngFor="let item of items">
+      <div  (click)="open(item.given_url, $event)">
+        <ion-thumbnail item-left>
+          <img  *ngIf="item.has_image == 0" src="https://orchestrate.io/share.png"/>
+          <img  *ngIf="item.has_image == 1" src="{{item.image.src}}"/>
+        </ion-thumbnail>
+        <h2>{{item.given_title}}</h2>
+        <p>{{item.excerpt}}</p>
+      </div>
+      <button primary clear item-right>
+        <ion-icon name="md-star"></ion-icon>
+      </button>
+      <button primary clear item-right>
+        <ion-icon name="create"></ion-icon>
+      </button>
+      <button clear primary item-right (click)="editCode(item)">
+        <ion-icon name="code"></ion-icon>
+      </button>
     </ion-item>
   </ion-list>
 </ion-content>

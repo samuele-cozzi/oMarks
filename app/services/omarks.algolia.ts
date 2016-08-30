@@ -37,10 +37,20 @@ export class OmarksAlgoliaService {
 
     public get_dashboard() : Promise<any> {
         
-        return this.http.get(this.service_url + '?facetFilters=tags.dashboard.tag:dashboard', {headers: this.headers})
-               .toPromise()
-               .then(response => response.json())
-               .catch(this.handleError);
+        // return this.http.get(this.service_url + '?facetFilters=tags.dashboard.tag:dashboard', {headers: this.headers})
+        //        .toPromise()
+        //        .then(response => response.json())
+        //        .catch(this.handleError);
+
+        let body = {
+            "params": "query=1",
+            "restrictSearchableAttributes":"favorite"
+        }
+
+        return this.http.post(this.service_url + "/query", body, {headers: this.headers})
+            .toPromise()
+            .then(response => response.json().hits)
+            .catch(this.handleError);
     }
 
     public get_facets() : Promise<any> {
@@ -84,6 +94,14 @@ export class OmarksAlgoliaService {
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);
+    }
+
+    public save_item(item) : Promise<any> {
+        
+        return this.http.post(this.service_url, item, {headers: this.headers})
+            .toPromise()
+            .then(response => response.json().hits)
+            .catch(this.handleError);
     }
 
 }
