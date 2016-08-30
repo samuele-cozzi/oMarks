@@ -37,7 +37,7 @@ export class OmarksAlgoliaService {
 
     public get_dashboard() : Promise<any> {
         
-        return this.http.get(this.service_url, {headers: this.headers})
+        return this.http.get(this.service_url + '?facetFilters=tags.dashboard.tag:dashboard', {headers: this.headers})
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);
