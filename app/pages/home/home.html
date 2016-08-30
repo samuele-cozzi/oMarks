@@ -5,55 +5,40 @@
 </ion-header>
 
 <ion-content padding class="card-background-page">
-  <ion-row responsive-md *ngFor="let rows of marks">
-    <ion-col width-20 *ngFor="let item of rows">
+  <div class="content">
+    <ul>
+      <li *ngFor="let item of marks">
+        <ion-card (click)="open(item.given_url, $event)">
 
-      <!--<ion-card (click)="open(item.given_url, $event)">
-        
-        <img  *ngIf="item && item.has_image == 0" src="https://orchestrate.io/share.png"/>
-        <img  *ngIf="item && item.has_image == 1" src="{{item.image.src}}"/>
+          <ion-item>
+            <ion-avatar item-left>
+              <!--<img src="https://img.readitlater.com/i/{{item.resolved_url.split('/')[2]}}/favicon.ico?f=fi"/>-->
+              <img src="https://icons.better-idea.org/icon?url={{item.resolved_url.split('/')[2]}}&size=120" />
+            </ion-avatar>
+            <h2>{{item.resolved_title}}</h2>
+            <p>{{item.resolved_url.split("/")[2]}}</p>
+          </ion-item>
 
-        <ion-card-content>
-          <h2 class="card-title">
-            {{item.given_title}}
-          </h2>
-          <p>
-            {{item.excerpt}}
-          </p>
-        </ion-card-content>
+          <ion-card-content  *ngIf="item && item.has_image == 0">{{item.excerpt}}</ion-card-content>
+          <ion-card-content  *ngIf="!item">{{item.excerpt}}</ion-card-content>
+          <section *ngIf="item && item.has_image == 1">
+            <img  src="{{item.image.src}}"/>
+          </section>
 
-      </ion-card>-->
+          <ion-item>
+                <button primary clear item-right>
+                  <ion-icon name="create"></ion-icon>
+                </button>
+                <button clear primary item-right>
+                  <ion-icon name="code"></ion-icon>
+                </button>
+    
+          </ion-item>
 
-      <ion-card (click)="open(item.given_url, $event)">
-
-        <ion-item>
-          <ion-avatar item-left>
-            <!--<img src="https://img.readitlater.com/i/{{item.resolved_url.split('/')[2]}}/favicon.ico?f=fi"/>-->
-            <img src="https://icons.better-idea.org/icon?url={{item.resolved_url.split('/')[2]}}&size=120" />
-          </ion-avatar>
-          <h2>{{item.resolved_title}}</h2>
-          <p>{{item.resolved_url.split("/")[2]}}</p>
-        </ion-item>
-
-        <ion-card-content  *ngIf="item && item.has_image == 0">{{item.excerpt}}</ion-card-content>
-        <ion-card-content  *ngIf="!item">{{item.excerpt}}</ion-card-content>
-        <section *ngIf="item && item.has_image == 1">
-          <img  src="{{item.image.src}}"/>
-        </section>
-
-        <ion-item>
-              <button primary clear item-right>
-                <ion-icon name="create"></ion-icon>
-              </button>
-              <button clear primary item-right>
-                <ion-icon name="code"></ion-icon>
-              </button>
-  
-        </ion-item>
-
-      </ion-card>
-
-    </ion-col>
-  </ion-row>
-  
+        </ion-card>
+      </li>
+    </ul>
+  </div>
 </ion-content>
+
+

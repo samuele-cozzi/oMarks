@@ -9,7 +9,7 @@ import {OmarksAlgoliaService} from '../../services/omarks.algolia';
 })
 export class HomePage implements OnInit {
 
-  marks : any;
+  marks = [];
   constructor(private navCtrl: NavController, private searchServices: OmarksAlgoliaService) {
   
   }
@@ -24,11 +24,11 @@ export class HomePage implements OnInit {
 
   getDashboard(): void {
     this.searchServices.get_dashboard().then(items => {
-      console.log(items);
-      var newArr = [];
-      while(items.hits.length) newArr.push(items.hits.splice(0,5));
-      this.marks = newArr;
-      console.log(this.marks);
+      // var newArr = [];
+      // while(items.hits.length) newArr.push(items.hits.splice(0,5));
+      // this.marks = newArr;
+      console.log(items.hits);
+      this.marks = items.hits;
     });
   }
 }
