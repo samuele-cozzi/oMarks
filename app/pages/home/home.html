@@ -9,7 +9,7 @@
     <ul>
       <li *ngFor="let item of marks">
         <ion-card >
-          <div (click)="open(item.given_url, $event)">
+          <div (click)="open(item, $event)">
           <ion-item>
             <ion-avatar item-left>
               <img src="https://icons.better-idea.org/icon?url={{item.resolved_url.split('/')[2]}}&size=120" />
@@ -28,11 +28,8 @@
               <button primary clear item-right>
                 <ion-icon name="md-star"></ion-icon>
               </button>
-              <button primary clear item-right>
+              <button primary clear item-right (click)="edit(item)">
                 <ion-icon name="create"></ion-icon>
-              </button>
-              <button clear primary item-right (click)="editCode(item)">
-                <ion-icon name="code"></ion-icon>
               </button>
           </ion-item>
 

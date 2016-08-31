@@ -15,7 +15,7 @@
 
   <ion-list *ngIf="items.length > 0">
     <ion-item *ngFor="let item of items">
-      <div  (click)="open(item.given_url, $event)">
+      <div  (click)="open(item, $event)">
         <ion-thumbnail item-left>
           <img  *ngIf="item.has_image == 0" src="https://orchestrate.io/share.png"/>
           <img  *ngIf="item.has_image == 1" src="{{item.image.src}}"/>
@@ -26,7 +26,7 @@
       <button primary clear item-right>
         <ion-icon name="md-star"></ion-icon>
       </button>
-      <button primary clear item-right>
+      <button primary clear item-right  (click)="edit(item)">
         <ion-icon name="create"></ion-icon>
       </button>
       <button clear primary item-right (click)="editCode(item)">

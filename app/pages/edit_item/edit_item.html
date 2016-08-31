@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{item.given_title}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content padding class="code_item">
+    <ion-list>
+
+      <ion-item>
+        <ion-label stacked>Title</ion-label>
+        <ion-input type="text" [(ngModel)]="item.given_title"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Description</ion-label>
+        <ion-input type="text" [(ngModel)]="item.given_url"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <div padding>
+      <button primary block (click)="save()">Save</button>
+    </div>      
+</ion-content>
+
+
+ 

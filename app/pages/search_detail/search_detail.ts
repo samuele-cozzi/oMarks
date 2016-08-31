@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 
 import {OmarksAlgoliaService} from '../../services/omarks.algolia';
-import {CodeItemPage} from '../code_item/code_item'
+import {CodeItemPage} from '../code_item/code_item';
+import {EditItemPage} from '../edit_item/edit_item';
 
 @Component({
   templateUrl: 'build/pages/search_detail/search_detail.html',
@@ -30,12 +31,25 @@ export class SearchDetailPage implements OnInit{
     });
   }
 
-  open(url,event){
-    window.open(url);
+  open(item,event){
+    if (typeof item.time_read == "string")
+    {
+      item.time_read = 0;
+    }
+    item.time_read ++;
+    
+    this.searchServices.save_item(item);
+    window.open(item.given_url)
   }
 
   editCode(item){
     this.navCtrl.push(CodeItemPage, {
+      item: JSON.stringify(item, null, 2)
+    });
+  }
+
+  edit(item){
+    this.navCtrl.push(EditItemPage, {
       item: JSON.stringify(item, null, 2)
     });
   }

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController} from 'ionic-angular';
 
-import {CodeItemPage} from '../code_item/code_item'
+import {EditItemPage} from '../edit_item/edit_item'
 import {OmarksAlgoliaService} from '../../services/omarks.algolia';
 
 @Component({
@@ -19,8 +19,15 @@ export class HomePage implements OnInit {
     this.getDashboard();
   }
 
-  open(url,event){
-    window.open(url);
+  open(item,event){
+    if (typeof item.time_read == "string")
+    {
+      item.time_read = 0;
+    }
+    item.time_read ++;
+    
+    this.searchServices.save_item(item);
+    window.open(item.given_url)
   }
 
   getDashboard(): void {
@@ -30,8 +37,8 @@ export class HomePage implements OnInit {
     });
   }
 
-  editCode(item){
-    this.navCtrl.push(CodeItemPage, {
+  edit(item){
+    this.navCtrl.push(EditItemPage, {
       item: JSON.stringify(item, null, 2)
     });
   }
