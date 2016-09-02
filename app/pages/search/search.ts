@@ -81,6 +81,27 @@ export class SearchPage  implements OnInit {
     });
   }
 
+  add_star(item){
+    item.favorite = 1;
+    this.searchServices.save_item(item)
+        .then(x => this.searchItems())
+        .catch(err => this.searchItems());
+  }
+
+  remove_star(item){
+    item.favorite = 0;
+    this.searchServices.save_item(item)
+        .then(x => this.searchItems())
+        .catch(err => this.searchItems());
+  }
+
+  delete(item){
+    this.searchServices.delete_item(item)
+        .then(x => this.searchItems())
+        .catch(err => this.searchItems());
+  }
+
+
   private _keydown(event){
     if (!this.searchInputed)
     {

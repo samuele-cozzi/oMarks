@@ -45,6 +45,13 @@ export class HomePage implements OnInit {
     });
   }
 
+  remove_star(item){
+    item.favorite = 0;
+    this.searchServices.save_item(item)
+        .then(x => this.getDashboard())
+        .catch(err => this.getDashboard());
+  }
+
   private _keydown(event){
     if (event.key == 'Control')
     {

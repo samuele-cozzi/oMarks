@@ -17,7 +17,7 @@
     <ion-item *ngFor="let item of items">
       <div  (click)="open(item, $event)">
         <ion-thumbnail item-left>
-          <img  *ngIf="item.has_image == 0" src="https://orchestrate.io/share.png"/>
+          <img  *ngIf="item.has_image == 0" src="build/images/oMarks_400x400.png"/>
           <img  *ngIf="item.has_image == 1" src="{{item.image.src}}"/>
         </ion-thumbnail>
         <h2>{{item.given_title}}</h2>

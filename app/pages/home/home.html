@@ -25,8 +25,8 @@
           </section>
           </div>
           <ion-item>
-              <button primary clear item-right>
-                <ion-icon name="md-star"></ion-icon>
+              <button primary clear item-right (click)="remove_star(item)">
+                <ion-icon name="md-star" ></ion-icon>
               </button>
               <button primary clear item-right (click)="edit(item)">
                 <ion-icon name="create"></ion-icon>

@@ -104,4 +104,12 @@ export class OmarksAlgoliaService {
             .catch(this.handleError);
     }
 
+    public delete_item(item) : Promise<any> {
+        
+        return this.http.delete(this.service_url + '/' + item.objectID, {headers: this.headers})
+            .toPromise()
+            .then(response => response.json())
+            .catch(this.handleError);
+    }
+
 }
