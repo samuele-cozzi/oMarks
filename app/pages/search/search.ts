@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {Component, OnInit, ElementRef, Renderer} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
 
 import {SearchDetailPage} from '../search_detail/search_detail';
 import {CodeItemPage} from '../code_item/code_item';
@@ -8,25 +8,33 @@ import {OmarksAlgoliaService} from '../../services/omarks.algolia';
 
 @Component({
   templateUrl: 'build/pages/search/search.html',
-  providers: [OmarksAlgoliaService]
+  providers: [OmarksAlgoliaService],
+  host: {'(document:keydown)': '_keydown($event)'}
 })
 export class SearchPage  implements OnInit {
   searchQuery: string = '';
+  searchInputed: boolean = false;
   items: string[];
   facets: any[];
 
-  constructor(private navCtrl: NavController, private searchServices: OmarksAlgoliaService) {
+  constructor(private navCtrl: NavController
+    , private navParams: NavParams
+    , private searchServices: OmarksAlgoliaService) {
     this.items = [];
+    this.searchQuery = "";
   }
 
   ngOnInit(): void {
     this.searchFacets();
+    this.searchItems();
   }
 
-  searchItems(event) {
-    this.searchQuery = event.target.value;
+  searchItemsImputed(){
+    this.searchInputed =true;
+    this.searchItems();
+  }
 
-    // if the value is an empty string don't filter the items
+  searchItems() {
     if (this.searchQuery && this.searchQuery.trim() != '') {
       this.searchServices.get_query(this.searchQuery).then(items => {
         console.log(items);
@@ -35,8 +43,6 @@ export class SearchPage  implements OnInit {
     } else {
       this.items = [];
     }
-
-    console.log(this.items.length);
   }
 
   searchFacets() {
@@ -73,5 +79,22 @@ export class SearchPage  implements OnInit {
     this.navCtrl.push(EditItemPage, {
       item: JSON.stringify(item, null, 2)
     });
+  }
+
+  private _keydown(event){
+    if (!this.searchInputed)
+    {
+      if(event.key.length == 1){
+        this.searchQuery += event.key;
+        this.searchItems();
+      }
+      else if(event.key == "Backspace"){
+        this.searchQuery = this.searchQuery.slice(0, -1);
+        this.searchItems();
+      }
+      else if(event.key == "Enter"){
+        this.open(this.items[0], null);
+      }
+    }
   }
 }

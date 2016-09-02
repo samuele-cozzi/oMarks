@@ -1,12 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, Tabs} from 'ionic-angular';
 
 import {EditItemPage} from '../edit_item/edit_item'
+import {SearchPage} from '../search/search'
 import {OmarksAlgoliaService} from '../../services/omarks.algolia';
 
 @Component({
   templateUrl: 'build/pages/home/home.html',
-  providers: [OmarksAlgoliaService]
+  providers: [OmarksAlgoliaService],
+  host: {'(document:keydown)': '_keydown($event)'}
 })
 export class HomePage implements OnInit {
 
@@ -41,5 +43,12 @@ export class HomePage implements OnInit {
     this.navCtrl.push(EditItemPage, {
       item: JSON.stringify(item, null, 2)
     });
+  }
+
+  private _keydown(event){
+    if (event.key == 'Control')
+    {
+      this.navCtrl.parent.select(1);
+    }
   }
 }

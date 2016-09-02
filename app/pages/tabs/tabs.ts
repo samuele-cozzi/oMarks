@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {NavController, Tabs} from 'ionic-angular';
 import {HomePage} from '../home/home';
 import {SearchPage} from '../search/search';
 import {SettingPage} from '../setting/setting';
@@ -10,6 +10,7 @@ import {AppSettings} from '../../config/app.settings';
 @Component({
   templateUrl: 'build/pages/tabs/tabs.html'
 })
+
 export class TabsPage {
 
   private tab1Root: any;

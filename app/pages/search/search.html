@@ -1,6 +1,10 @@
 
-<ion-content padding class="search">
-  <ion-searchbar (ionInput)="searchItems($event)"></ion-searchbar>
+<ion-header>
+  <ion-navbar>
+  <ion-searchbar [(ngModel)]='searchQuery' (ionInput)="searchItemsImputed()" class="searchbar" autofocus></ion-searchbar>
+</ion-navbar></ion-header>
+
+<ion-content padding class="search" >
 
   <ion-list *ngIf="items.length == 0" >
     <ion-item *ngFor="let facet of facets" (click)="goto(facet.key, facet.value)">
