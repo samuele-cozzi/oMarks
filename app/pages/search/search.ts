@@ -16,6 +16,7 @@ export class SearchPage  implements OnInit {
   searchInputed: boolean = false;
   items: string[];
   facets: any[];
+  page: number = 0;
 
   constructor(private navCtrl: NavController
     , private navParams: NavParams
@@ -36,7 +37,7 @@ export class SearchPage  implements OnInit {
 
   searchItems() {
     if (this.searchQuery && this.searchQuery.trim() != '') {
-      this.searchServices.get_query(this.searchQuery).then(items => {
+      this.searchServices.get_query(this.searchQuery, 20, this.page).then(items => {
         console.log(items);
         this.items = items.hits;
       });
@@ -49,6 +50,22 @@ export class SearchPage  implements OnInit {
     this.searchServices.get_facets().then(items => {
       this.facets = items;
     });
+  }
+
+  doInfinite(infiniteScroll) {
+    this.page ++;
+    console.log('Begin async operation: ' + this.page);
+    this.searchServices.get_query(this.searchQuery, 20, this.page).then(items => {
+        if (items.hits.length == 0)
+        {
+          infiniteScroll.enable(false);
+        }
+        for (var i = 0; i < items.hits.length; i++) {
+          this.items.push( items.hits[i] );
+        }
+        console.log('Async operation has ended');
+        infiniteScroll.complete();
+      });
   }
 
   goto(key,value){
