@@ -53,7 +53,7 @@ export class HomePage implements OnInit {
   }
 
   private _keydown(event){
-    if (event.key == 'Control')
+    if (event.key == 'Alt')
     {
       this.navCtrl.parent.select(1);
     }
