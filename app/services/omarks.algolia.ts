@@ -37,14 +37,10 @@ export class OmarksAlgoliaService {
 
     public get_dashboard() : Promise<any> {
         
-        // return this.http.get(this.service_url + '?facetFilters=tags.dashboard.tag:dashboard', {headers: this.headers})
-        //        .toPromise()
-        //        .then(response => response.json())
-        //        .catch(this.handleError);
-
         let body = {
             "params": "query=1",
-            "restrictSearchableAttributes":"favorite"
+            "restrictSearchableAttributes":"favorite",
+            "hitsPerPage": "50"
         }
 
         return this.http.post(this.service_url + "/query", body, {headers: this.headers})
@@ -88,9 +84,15 @@ export class OmarksAlgoliaService {
                .catch(this.handleError);
     }
 
-    public get_query(query: string) : Promise<any> {
+    public get_query(query: string, hitsPerPage: number = 20, page: number = 0 ) : Promise<any> {
         
-        return this.http.get(this.service_url + '?query='+ query, {headers: this.headers})
+        let body = {
+            "query": query,
+            "hitsPerPage":hitsPerPage,
+            "page": page
+        }
+
+        return this.http.post(this.service_url + '/query', body, {headers: this.headers})
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);
