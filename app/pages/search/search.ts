@@ -4,12 +4,14 @@ import {NavController, NavParams} from 'ionic-angular';
 import {SearchDetailPage} from '../search_detail/search_detail';
 import {CodeItemPage} from '../code_item/code_item';
 import {EditItemPage} from '../edit_item/edit_item';
+import {KeysPipe} from '../../pipes/keys';
 import {OmarksAlgoliaService} from '../../services/omarks.algolia';
 
 @Component({
   templateUrl: 'build/pages/search/search.html',
   providers: [OmarksAlgoliaService],
-  host: {'(document:keydown)': '_keydown($event)'}
+  host: {'(document:keyup)': '_keyup($event)'},
+  pipes: [KeysPipe]
 })
 export class SearchPage  implements OnInit {
   searchQuery: string = '';
@@ -119,7 +121,7 @@ export class SearchPage  implements OnInit {
   }
 
 
-  private _keydown(event){
+  private _keyup(event){
     if (!this.searchInputed)
     {
       if(event.key.length == 1){

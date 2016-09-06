@@ -14,24 +14,35 @@
   </ion-list>
 
   <ion-list *ngIf="items.length > 0">
-    <ion-item *ngFor="let item of items">
-      <div  (click)="open(item, $event)">
-        <ion-thumbnail item-left>
+    <ion-item-sliding  *ngFor="let item of items" >
+      <ion-item (click)="open(item, $event)">
+        <ion-thumbnail item-left> 
           <img  *ngIf="item.has_image == 0" src="build/images/oMarks_400x400.png"/>
           <img  *ngIf="item.has_image == 1" src="{{item.image.src}}"/>
         </ion-thumbnail>
         <h2>{{item.given_title}}</h2>
         <p>{{item.excerpt}}</p>
-      </div>
-      <button primary clear item-right>
-        <ion-icon name="md-star"></ion-icon>
-      </button>
-      <button primary clear item-right  (click)="edit(item)">
-        <ion-icon name="create"></ion-icon>
-      </button>
-      <button clear primary item-right (click)="editCode(item)">
-        <ion-icon name="code"></ion-icon>
-      </button>
-    </ion-item>
+        <h3>
+          <button outline *ngFor="let tag of item.tags | keys">{{tag}}</button>
+        </h3>
+      </ion-item>
+      <ion-item-options>
+        <button primary *ngIf="item.favorite == 1"  (click)="remove_star(item)">
+          <ion-icon name="md-star"></ion-icon>
+        </button>
+        <button primary *ngIf="item.favorite != 1"  (click)="add_star(item)">
+          <ion-icon name="star-outline"></ion-icon>
+        </button>
+        <button secondary  (click)="edit(item)">
+          <ion-icon name="create"></ion-icon>
+        </button>
+        <button dark (click)="editCode(item)">
+          <ion-icon name="code"></ion-icon>
+        </button>
+        <button danger (click)="delete(item)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>

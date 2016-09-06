@@ -1,13 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 
+import {KeysPipe} from '../../pipes/keys';
 import {OmarksAlgoliaService} from '../../services/omarks.algolia';
 import {CodeItemPage} from '../code_item/code_item';
 import {EditItemPage} from '../edit_item/edit_item';
 
 @Component({
   templateUrl: 'build/pages/search_detail/search_detail.html',
-  providers: [OmarksAlgoliaService]
+  providers: [OmarksAlgoliaService],
+  pipes: [KeysPipe]
 })
 export class SearchDetailPage implements OnInit{
   items: string[];
