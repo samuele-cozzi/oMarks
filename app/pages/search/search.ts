@@ -55,9 +55,11 @@ export class SearchPage  implements OnInit {
   }
 
   doInfinite(infiniteScroll) {
-    this.page ++;
-    console.log('Begin async operation: ' + this.page);
-    this.searchServices.get_query(this.searchQuery, 20, this.page).then(items => {
+    if (this.items.length > 0)
+    {
+      this.page ++;
+      console.log('Begin async operation: ' + this.page);
+      this.searchServices.get_query(this.searchQuery, 20, this.page).then(items => {
         if (items.hits.length == 0)
         {
           infiniteScroll.enable(false);
@@ -68,6 +70,11 @@ export class SearchPage  implements OnInit {
         console.log('Async operation has ended');
         infiniteScroll.complete();
       });
+    }
+    else
+    {
+      infiniteScroll.complete();
+    }
   }
 
   goto(key,value){
