@@ -33,4 +33,9 @@ export class SettingPage  implements OnInit{
     this.app_settings.DeleteAlgoliaSettings();
     window.location.reload();
   }
+
+  refresh(event){
+    window.location.reload();
+  }
+  
 }

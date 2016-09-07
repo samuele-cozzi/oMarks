@@ -27,6 +27,7 @@ export class EditItemPage implements OnInit{
         src: this.item.image_src
       }
     }
+    this.item.time_read = Number.parseFloat(this.item.time_read);
     this.searchServices.save_item(this.item)
         .then(x => this.navCtrl.push(HomePage))
         .catch(err => this.message = " Error: " + err);
