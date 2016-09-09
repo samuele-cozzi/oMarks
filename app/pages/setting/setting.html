@@ -7,7 +7,17 @@
 </ion-header>
 
 <ion-content>
+    <div padding>
+        <button block (click)="refresh($event)">
+            <ion-icon name="refresh"></ion-icon>
+            Refresh
+        </button>
+    </div>
+
     <ion-list>
+        <ion-list-header>
+            Algolia Settings
+        </ion-list-header>
         <ion-item>
             <ion-label>Application Id</ion-label>
             <ion-input type="text" [(ngModel)]='settings.application_id' required></ion-input>
@@ -23,11 +33,10 @@
             <ion-input type="password" [(ngModel)]='settings.api_key' required></ion-input>
         </ion-item>
 
+        <div padding>
+            <button block (click)="save($event)">Save</button>
+            <button block (click)="delete($event)">Clear Settings</button>
+        </div>
     </ion-list>
-
-    <div padding>
-    <button block (click)="save($event)">Save</button>
-    <button block (click)="delete($event)">Clear Settings</button>
-    <button block (click)="refresh($event)">Refresh</button>
-    </div>
+    
 </ion-content>

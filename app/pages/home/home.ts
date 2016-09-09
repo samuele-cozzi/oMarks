@@ -26,7 +26,7 @@ export class HomePage implements OnInit {
     {
       item.time_read = 0;
     }
-    item.time_read ++;
+    //item.time_read ++;
     
     this.searchServices.save_item(item);
     window.open(item.given_url)

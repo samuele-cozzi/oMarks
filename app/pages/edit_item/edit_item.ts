@@ -20,7 +20,7 @@ export class EditItemPage implements OnInit{
   }
 
   save(){
-    if (this.item.image == null)
+    if (this.item.image == null && this.item.image_src != '')
     {
       this.item.has_image = 1;
       this.item.image = {
