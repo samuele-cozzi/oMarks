@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NavController, Tabs} from 'ionic-angular';
+import {NavController, Tabs, ToastController} from 'ionic-angular';
 
 import {EditItemPage} from '../edit_item/edit_item'
 import {SearchPage} from '../search/search'
@@ -13,7 +13,9 @@ import {OmarksAlgoliaService} from '../../services/omarks.algolia';
 export class HomePage implements OnInit {
 
   marks = [];
-  constructor(private navCtrl: NavController, private searchServices: OmarksAlgoliaService) {
+  constructor(private navCtrl: NavController
+    , private toastCtrl: ToastController
+    , private searchServices: OmarksAlgoliaService) {
   
   }
 
@@ -48,8 +50,22 @@ export class HomePage implements OnInit {
   remove_star(item){
     item.favorite = 0;
     this.searchServices.save_item(item)
-        .then(x => this.getDashboard())
-        .catch(err => this.getDashboard());
+        .then(x => {
+          let toast = this.toastCtrl.create({
+            message: 'Saved!',
+            duration: 2000,
+            position: 'top'
+          });
+          toast.present();
+        })
+        .catch(err => {
+          let toast = this.toastCtrl.create({
+            message: 'Error: ' + err,
+            duration: 2000,
+            position: 'top'
+          });
+          toast.present();
+        });
   }
 
   private _keydown(event){

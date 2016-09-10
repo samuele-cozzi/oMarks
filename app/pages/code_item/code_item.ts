@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams, ToastController} from 'ionic-angular';
 
 import {OmarksAlgoliaService} from '../../services/omarks.algolia';
 import {HomePage} from '../home/home';
@@ -11,9 +11,11 @@ import {HomePage} from '../home/home';
 export class CodeItemPage implements OnInit{
   item_string: string;
   item: any; 
-  message: string = "";
 
-  constructor(private navCtrl: NavController, private navParams: NavParams, private searchServices: OmarksAlgoliaService) {}
+  constructor(private navCtrl: NavController
+    , private navParams: NavParams
+    , private toastCtrl: ToastController
+    , private searchServices: OmarksAlgoliaService) {}
 
   ngOnInit(): void {
     this.item_string = this.navParams.get('item');
@@ -23,7 +25,21 @@ export class CodeItemPage implements OnInit{
   save(){
     let request = JSON.parse(this.item_string);
     this.searchServices.save_item(request)
-        .then(x => this.navCtrl.push(HomePage))
-        .catch(err => this.message = " Error: " + err);
+        .then(x => {
+          let toast = this.toastCtrl.create({
+            message: 'Saved!',
+            duration: 2000,
+            position: 'top'
+          });
+          toast.present();
+        })
+        .catch(err => {
+          let toast = this.toastCtrl.create({
+            message: 'Error: ' + err,
+            duration: 2000,
+            position: 'top'
+          });
+          toast.present();
+        });
   }
 }

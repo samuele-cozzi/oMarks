@@ -1,5 +1,5 @@
 import {Component, OnInit, ElementRef, Renderer} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams, ToastController} from 'ionic-angular';
 
 import {SearchDetailPage} from '../search_detail/search_detail';
 import {CodeItemPage} from '../code_item/code_item';
@@ -22,6 +22,7 @@ export class SearchPage  implements OnInit {
 
   constructor(private navCtrl: NavController
     , private navParams: NavParams
+    , private toastCtrl: ToastController
     , private searchServices: OmarksAlgoliaService) {
     this.items = [];
     this.searchQuery = "";

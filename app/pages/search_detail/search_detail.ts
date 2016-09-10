@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams, ToastController} from 'ionic-angular';
 
 import {KeysPipe} from '../../pipes/keys';
 import {OmarksAlgoliaService} from '../../services/omarks.algolia';
@@ -16,7 +16,10 @@ export class SearchDetailPage implements OnInit{
   key: string;
   value: string;
 
-  constructor(private navCtrl: NavController, private navParams: NavParams, private searchServices: OmarksAlgoliaService) {
+  constructor(private navCtrl: NavController
+    , private navParams: NavParams
+    , private toastCtrl: ToastController
+    , private searchServices: OmarksAlgoliaService) {
     this.items = [];
     this.key = navParams.get('key');
     this.value = navParams.get('value');

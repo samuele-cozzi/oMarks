@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams, ToastController} from 'ionic-angular';
 
 import {OmarksAlgoliaService} from '../../services/omarks.algolia';
 import {HomePage} from '../home/home';
@@ -13,7 +13,10 @@ export class EditItemPage implements OnInit{
   item: any; 
   message: string = "";
 
-  constructor(private navCtrl: NavController, private navParams: NavParams, private searchServices: OmarksAlgoliaService) {}
+  constructor(private navCtrl: NavController
+    , private navParams: NavParams
+    , private toastCtrl: ToastController
+    , private searchServices: OmarksAlgoliaService) {}
 
   ngOnInit(): void {
     this.item = JSON.parse(this.navParams.get('item'));
@@ -29,15 +32,43 @@ export class EditItemPage implements OnInit{
     }
     this.item.time_read = Number.parseFloat(this.item.time_read);
     this.searchServices.save_item(this.item)
-        .then(x => this.navCtrl.push(HomePage))
-        .catch(err => this.message = " Error: " + err);
+        .then(x => {
+          let toast = this.toastCtrl.create({
+            message: 'Saved!',
+            duration: 2000,
+            position: 'top'
+          });
+          toast.present();
+        })
+        .catch(err => {
+          let toast = this.toastCtrl.create({
+            message: 'Error: ' + err,
+            duration: 2000,
+            position: 'top'
+          });
+          toast.present();
+        });
   }
 
   star(){
     this.item.favorite = 1;
     this.searchServices.save_item(this.item)
-        .then(x => this.navCtrl.push(HomePage))
-        .catch(err => this.message = " Error: " + err);
+        .then(x => {
+          let toast = this.toastCtrl.create({
+            message: 'Saved!',
+            duration: 2000,
+            position: 'top'
+          });
+          toast.present();
+        })
+        .catch(err => {
+          let toast = this.toastCtrl.create({
+            message: 'Error: ' + err,
+            duration: 2000,
+            position: 'top'
+          });
+          toast.present();
+        });
   }
 
   code(){
@@ -48,7 +79,21 @@ export class EditItemPage implements OnInit{
 
   delete(){
     this.searchServices.delete_item(this.item)
-        .then(x => this.navCtrl.push(HomePage))
-        .catch(err => this.message = " Error: " + err);
+        .then(x => {
+          let toast = this.toastCtrl.create({
+            message: 'Saved!',
+            duration: 2000,
+            position: 'top'
+          });
+          toast.present();
+        })
+        .catch(err => {
+          let toast = this.toastCtrl.create({
+            message: 'Error: ' + err,
+            duration: 2000,
+            position: 'top'
+          });
+          toast.present();
+        });
   }
 }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NavController, Storage, SqlStorage} from 'ionic-angular';
+import {NavController, Storage, SqlStorage, ToastController} from 'ionic-angular';
 
 import {TabsPage} from '../tabs/tabs';
 import {AlgoliaSetting} from '../../models/algolia_setting';
@@ -15,7 +15,10 @@ export class SettingPage  implements OnInit{
   settings:AlgoliaSetting = new AlgoliaSetting();
   errors:string='';
 
-  constructor(private navCtrl: NavController, private searchServices: OmarksAlgoliaService, private app_settings: AppSettings) {
+  constructor(private navCtrl: NavController
+    , private searchServices: OmarksAlgoliaService
+    , private toastCtrl: ToastController
+    , private app_settings: AppSettings) {
   }
 
   ngOnInit(): void {
@@ -25,8 +28,14 @@ export class SettingPage  implements OnInit{
   }
 
   save(event){
-    this.app_settings.SaveAlgoliaSettings(this.settings);
-    this.navCtrl.push(TabsPage);
+    this.app_settings.SaveAlgoliaSettings(this.settings)
+    let toast = this.toastCtrl.create({
+      message: 'Saved!',
+      duration: 2000,
+      position: 'top'
+    });
+    toast.present();
+        
   }
 
   delete(event){
