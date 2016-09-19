@@ -94,7 +94,7 @@ export class OmarksAlgoliaService {
 
         return this.http.post(this.service_url + '/query', body, {headers: this.headers})
                .toPromise()
-               .then(response => response.json())
+               .then(response => response.json().hits)
                .catch(this.handleError);
     }
 

@@ -12,10 +12,10 @@
           <div (click)="open(item, $event)">
           <ion-item>
             <ion-avatar item-left>
-              <img src="https://icons.better-idea.org/icon?url={{item.resolved_url.split('/')[2]}}&size=120" />
+              <img src="https://icons.better-idea.org/icon?url={{item.given_url.split('/')[2]}}&size=120" />
             </ion-avatar>
             <h2>{{item.given_title}}</h2>
-            <p>{{item.resolved_url.split("/")[2]}}</p>
+            <p>{{item.given_url.split("/")[2]}}</p>
           </ion-item>
 
           <ion-card-content  *ngIf="item && item.has_image == 0">{{item.excerpt}}</ion-card-content>
