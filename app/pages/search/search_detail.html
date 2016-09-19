@@ -24,7 +24,7 @@
         <p>{{item.given_url}}</p>
         <p>{{item.excerpt}}</p>
         <h3>
-          <button outline *ngFor="let tag of item.tags | keys">{{tag}}</button>
+          <button outline *ngFor="let tag of item.tags | split">{{tag}}</button>
         </h3>
       </ion-item>
       <ion-item-options>

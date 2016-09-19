@@ -6,13 +6,14 @@ import {SearchBase} from './search_base';
 import {CodeItemPage} from '../code_item/code_item';
 import {EditItemPage} from '../edit_item/edit_item';
 import {KeysPipe} from '../../pipes/keys';
+import {SplitPipe} from '../../pipes/split'
 import {OmarksAlgoliaService} from '../../services/omarks.algolia';
 
 @Component({
   templateUrl: 'build/pages/search/search.html',
   providers: [OmarksAlgoliaService],
   host: {'(document:keyup)': '_keyup($event)'},
-  pipes: [KeysPipe]
+  pipes: [KeysPipe, SplitPipe]
 })
 
 export class SearchPage extends SearchBase implements OnInit {
