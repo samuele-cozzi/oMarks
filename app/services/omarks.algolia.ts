@@ -56,12 +56,10 @@ export class OmarksAlgoliaService {
                .then(response => {
                    var obj = response.json().facets;
                    var response_array = [];
-                   console.log(obj);
                    for (var key in obj) {
                        if(key.endsWith('.tag'))
                        {
                         for (var key1 in obj[key]) {
-                            console.log(' name=' + key + ' value=' + key1);
                             response_array.push({
                                 'key': key,
                                 'value': key1
@@ -70,7 +68,6 @@ export class OmarksAlgoliaService {
                         }
                        }
                     }
-                    console.log(response_array);
                    return response_array;
                })
                .catch(this.handleError);

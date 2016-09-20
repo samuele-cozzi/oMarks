@@ -17,7 +17,18 @@
     <ion-item-sliding  *ngFor="let item of items" >
       <ion-item (click)="open(item, $event)">
         <ion-thumbnail item-left> 
-          <img  *ngIf="item.has_image == 0" src="https://icons.better-idea.org/icon?url={{item.given_url.split('/')[2]}}&size=120"/>
+          <span  *ngIf="item.has_image == 0">
+            <span [ngSwitch]="item.given_url.split('/')[3]">
+              <img *ngSwitchCase="'drive'" src="/build/images/drive.png"/>
+              <img *ngSwitchCase="'document'" src="/build/images/doc.png"/>
+              <img *ngSwitchCase="'spreadsheets'" src="/build/images/sheets.png"/>
+              <img *ngSwitchCase="'presentation'" src="/build/images/slides.png"/>
+              <img *ngSwitchCase="'drawings'" src="/build/images/draw.png"/>
+              <img *ngSwitchCase="'projects'" src="/build/images/easyredmine.png"/>
+              <img *ngSwitchCase="'issues'" src="/build/images/easyredmine.png"/>
+              <img *ngSwitchDefault  src="https://icons.better-idea.org/icon?url={{item.given_url.split('/')[2]}}&size=120" />
+            </span>
+          </span>
           <img  *ngIf="item.has_image == 1" src="{{item.image.src}}"/>
         </ion-thumbnail>
         <h2>{{item.given_title}}</h2>
