@@ -69,7 +69,7 @@ export class HomePage implements OnInit {
   }
 
   private _keydown(event){
-    if (event.key == 'Alt')
+    if (event.key == 'Tab')
     {
       this.navCtrl.parent.select(1);
     }
