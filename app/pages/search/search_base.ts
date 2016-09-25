@@ -47,12 +47,12 @@ export class SearchBase {
             this.page ++;
             console.log('Begin async operation: ' + this.page);
             this.searchServices.get_query(this.searchQuery, 20, this.page).then(items => {
-                if (items.hits.length == 0)
+                if (items.length == 0)
                 {
                     infiniteScroll.enable(false);
                 }
-                for (var i = 0; i < items.hits.length; i++) {
-                    this.items.push( items.hits[i] );
+                for (var i = 0; i < items.length; i++) {
+                    this.items.push( items[i] );
                 }
                 console.log('Async operation has ended');
                 infiniteScroll.complete();
