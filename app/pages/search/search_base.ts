@@ -3,6 +3,7 @@ import {NavController, NavParams, ToastController} from 'ionic-angular';
 import {OmarksAlgoliaService} from '../../services/omarks.algolia';
 import {CodeItemPage} from '../code_item/code_item';
 import {EditItemPage} from '../edit_item/edit_item';
+import {Marks} from '../../models/marks';
 
 export class SearchBase {
 
@@ -84,6 +85,12 @@ export class SearchBase {
     edit(item){
         this.navCtrl.push(EditItemPage, {
             item: JSON.stringify(item, null, 2)
+        });
+    }
+
+    create(item){
+        this.navCtrl.push(EditItemPage, {
+            item:  JSON.stringify(new Marks(), null, 2)
         });
     }
 

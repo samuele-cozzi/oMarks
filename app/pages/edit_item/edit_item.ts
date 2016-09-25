@@ -30,6 +30,8 @@ export class EditItemPage implements OnInit{
         src: this.item.image_src
       }
     }
+    this.item['facets.tag'] = this.item.tags.split(',');
+
     this.item.time_read = Number.parseFloat(this.item.time_read);
     this.searchServices.save_item(this.item)
         .then(x => {

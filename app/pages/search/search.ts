@@ -29,7 +29,8 @@ export class SearchPage extends SearchBase implements OnInit {
     this.searchItems();
   }
 
-  searchItemsImputed(){
+  onInput(){
+    console.log('ionInput');
     this.searchInputed =true;
     this.searchItems();
   }  
@@ -39,6 +40,26 @@ export class SearchPage extends SearchBase implements OnInit {
       key: key,
       value: value
     });
+  }
+
+  onBlur()
+  {
+    console.log('ionBlur');
+  }
+
+  onFocus()
+  {
+    console.log('ionFocus');
+  }
+
+  onCancel()
+  {
+    console.log('ionCancel');
+  }
+
+  onClear()
+  {
+    console.log('ionClear');
   }
 
 

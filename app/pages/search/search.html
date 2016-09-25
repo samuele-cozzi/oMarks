@@ -1,10 +1,22 @@
 
 <ion-header>
   <ion-navbar>
-  <ion-searchbar [(ngModel)]='searchQuery' (ionInput)="searchItemsImputed()" class="searchbar" autofocus></ion-searchbar>
+  <ion-searchbar [(ngModel)]='searchQuery' 
+    (ionInput)="onInput()"
+     (ionBlur)="onBlur($event)"
+     (ionFocus)="onFocus($event)"
+     (ionCancel)="onCancel($event)"
+     (ionClear)="onClear($event)"
+    class="searchbar" autofocus></ion-searchbar>
 </ion-navbar></ion-header>
 
+
+
 <ion-content padding class="search" >
+
+  <button fab-fixed fab-right fab-bottom round (click)="create(item)">
+    <ion-icon name="add"></ion-icon>
+  </button>
 
   <ion-list *ngIf="items.length == 0" >
     <ion-item *ngFor="let facet of facets" (click)="goto(facet.key, facet.value)">
@@ -25,8 +37,6 @@
               <img *ngSwitchCase="'spreadsheets'" src="/build/images/sheets.png"/>
               <img *ngSwitchCase="'presentation'" src="/build/images/slides.png"/>
               <img *ngSwitchCase="'drawings'" src="/build/images/draw.png"/>
-              <img *ngSwitchCase="'projects'" src="/build/images/easyredmine.png"/>
-              <img *ngSwitchCase="'issues'" src="/build/images/easyredmine.png"/>
               <img *ngSwitchDefault  src="https://icons.better-idea.org/icon?url={{item.given_url.split('/')[2]}}&size=120" />
             </span>
           </span>

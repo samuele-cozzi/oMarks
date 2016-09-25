@@ -12,7 +12,15 @@
           <div (click)="open(item, $event)">
           <ion-item>
             <ion-avatar item-left>
-              <img src="https://icons.better-idea.org/icon?url={{item.given_url.split('/')[2]}}&size=120" />
+              <span [ngSwitch]="item.given_url.split('/')[3]">
+                <img *ngSwitchCase="'drive'" src="/build/images/drive.png"/>
+                <img *ngSwitchCase="'document'" src="/build/images/doc.png"/>
+                <img *ngSwitchCase="'spreadsheets'" src="/build/images/sheets.png"/>
+                <img *ngSwitchCase="'presentation'" src="/build/images/slides.png"/>
+                <img *ngSwitchCase="'drawings'" src="/build/images/draw.png"/>
+                <img *ngSwitchDefault  src="https://icons.better-idea.org/icon?url={{item.given_url.split('/')[2]}}&size=120"  />
+              </span>
+              <!--<img src="https://icons.better-idea.org/icon?url={{item.given_url.split('/')[2]}}&size=120" />-->
             </ion-avatar>
             <h2>{{item.given_title}}</h2>
             <p>{{item.given_url.split("/")[2]}}</p>
