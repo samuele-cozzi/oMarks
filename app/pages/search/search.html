@@ -11,12 +11,13 @@
 </ion-navbar></ion-header>
 
 
+<button fab-fixed fab-right fab-bottom round (click)="create(item)">
+  <ion-icon name="add"></ion-icon>
+</button>
 
 <ion-content padding class="search" >
 
-  <button fab-fixed fab-right fab-bottom round (click)="create(item)">
-    <ion-icon name="add"></ion-icon>
-  </button>
+  
 
   <ion-list *ngIf="items.length == 0" >
     <ion-item *ngFor="let facet of facets" (click)="goto(facet.key, facet.value)">

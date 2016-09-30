@@ -29,13 +29,14 @@ export class SearchBase {
         } 
         else if (this.key != "" && this.value != "")
         {
-            this.searchServices.get_filtered_facets(this.key, this.value).then(items => {
+            this.searchServices.get_filtered_facets(this.key, this.value, 20, this.page).then(items => {
                 this.items = items;
             });
         } 
         else 
         {
             this.searchServices.get_facets().then(items => {
+                this.items = [];
                 this.facets = items;
             });
         }
@@ -46,17 +47,33 @@ export class SearchBase {
         {
             this.page ++;
             console.log('Begin async operation: ' + this.page);
-            this.searchServices.get_query(this.searchQuery, 20, this.page).then(items => {
-                if (items.length == 0)
-                {
-                    infiniteScroll.enable(false);
-                }
-                for (var i = 0; i < items.length; i++) {
-                    this.items.push( items[i] );
-                }
-                console.log('Async operation has ended');
-                infiniteScroll.complete();
-            });
+            if (this.searchQuery && this.searchQuery.trim() != '') {
+                this.searchServices.get_query(this.searchQuery, 20, this.page).then(items => {
+                    if (items.length == 0)
+                    {
+                        infiniteScroll.enable(false);
+                    }
+                    for (var i = 0; i < items.length; i++) {
+                        this.items.push( items[i] );
+                    }
+                    console.log('Async operation has ended');
+                    infiniteScroll.complete();
+                });
+            } 
+            else if (this.key != "" && this.value != "")
+            {
+                this.searchServices.get_filtered_facets(this.key, this.value, 20, this.page).then(items => {
+                    if (items.length == 0)
+                    {
+                        infiniteScroll.enable(false);
+                    }
+                    for (var i = 0; i < items.length; i++) {
+                        this.items.push( items[i] );
+                    }
+                    console.log('Async operation has ended');
+                    infiniteScroll.complete();
+                });
+            }
         }
         else
         {

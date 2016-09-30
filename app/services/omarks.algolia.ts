@@ -73,9 +73,16 @@ export class OmarksAlgoliaService {
                .catch(this.handleError);
     }
 
-    public get_filtered_facets(key: string, value: string) : Promise<any> {
+    public get_filtered_facets(key: string, value: string, hitsPerPage: number = 20, page: number = 0 ) : Promise<any> {
         
-        return this.http.get(this.service_url + '?facetFilters='+ key + ':' + value, {headers: this.headers})
+        let body = {
+            "facetFilters": key + ':' + value,
+            "hitsPerPage":hitsPerPage,
+            "page": page
+        }
+
+
+        return this.http.post(this.service_url + '/query', body ,{headers: this.headers})
                .toPromise()
                .then(response => response.json().hits)
                .catch(this.handleError);
