@@ -47,6 +47,54 @@ export class HomePage implements OnInit {
     });
   }
 
+  up(item){
+    item.time_read ++;
+    this.searchServices.save_item(item)
+        .then(x => {
+          let toast = this.toastCtrl.create({
+            message: 'Saved!',
+            duration: 2000,
+            position: 'top'
+          });
+          toast.present();
+          setTimeout(() => {
+            this.getDashboard();
+          }, 3000);
+        })
+        .catch(err => {
+          let toast = this.toastCtrl.create({
+            message: 'Error: ' + err,
+            duration: 2000,
+            position: 'top'
+          });
+          toast.present();
+        });
+  }
+
+  down(item){
+    item.time_read --;
+    this.searchServices.save_item(item)
+        .then(x => {
+          let toast = this.toastCtrl.create({
+            message: 'Saved!',
+            duration: 2000,
+            position: 'top'
+          });
+          toast.present();
+          setTimeout(() => {
+            this.getDashboard();
+          }, 3000);
+        })
+        .catch(err => {
+          let toast = this.toastCtrl.create({
+            message: 'Error: ' + err,
+            duration: 2000,
+            position: 'top'
+          });
+          toast.present();
+        });
+  }
+
   remove_star(item){
     item.favorite = 0;
     this.searchServices.save_item(item)
