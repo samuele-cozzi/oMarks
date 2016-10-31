@@ -9,7 +9,11 @@ oMarks is a bookmarks manager IOS/Android/webapp.
 
 
 ## Features
+1. Bookmarks dashboard
 
+1. Bookmarks search powered by Algolia
+
+1. Bookmarks tags organization
 
 ## Development Setup
 This site relies heavily on node and npm.
@@ -29,14 +33,14 @@ if not install [nvm](https://github.com/creationix/nvm) to get node going on you
 
 ## Related Projects
 * <a href="http://ionic.io/2">Ionic 2</a>
-* Angular 2
-* Algolia
+* <a href="https://angular.io/">Angular 2</a>
+* <a href="https://www.algolia.com/">Algolia</a>
 
 
 ## Integrations
-* Zapier
-* ifttt
-* Pocket
+* <a href="https://zapier.com/">Zapier</a>
+* <a href="https://ifttt.com/recipes">ifttt</a>
+* <a href="https://getpocket.com/a/queue/">Pocket</a>
 
 ## License
 [MIT](LICENSE)
