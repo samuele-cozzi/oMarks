@@ -32,15 +32,15 @@ if not install [nvm](https://github.com/creationix/nvm) to get node going on you
 1. run ionic serve: `ionic serve`
 
 ## Related Projects
-* <a href="http://ionic.io/2">Ionic 2</a>
-* <a href="https://angular.io/">Angular 2</a>
-* <a href="https://www.algolia.com/">Algolia</a>
+* <a href="http://ionic.io/2" target="_blank">Ionic 2</a>
+* <a href="https://angular.io/" target="_blank">Angular 2</a>
+* <a href="https://www.algolia.com/" target="_blank">Algolia</a>
 
 
 ## Integrations
-* <a href="https://zapier.com/">Zapier</a>
-* <a href="https://ifttt.com/recipes">ifttt</a>
-* <a href="https://getpocket.com/a/queue/">Pocket</a>
+* <a href="https://zapier.com/" target="_blank">Zapier</a>
+* <a href="https://ifttt.com/recipes" target="_blank">ifttt</a>
+* <a href="https://getpocket.com/a/queue/" target="_blank">Pocket</a>
 
 ## License
 [MIT](LICENSE)
