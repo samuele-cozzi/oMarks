@@ -1,10 +1,9 @@
 # oMarks
 
-
-intro
+oMarks is a bookmarks manager IOS/Android/webapp. 
 
 <p align="center">
-  <img alt="oMarks Dashboard" src="">
+  <img alt="oMarks Dashboard" src="https://drive.google.com/file/d/0B8BgVMJWK7LcXzAxVkhGU0xXOG8/view?usp=sharing">
 </p>
 
 
@@ -29,10 +28,14 @@ if not install [nvm](https://github.com/creationix/nvm) to get node going on you
 1. run ionic serve: `ionic serve`
 
 ## Related Projects
-* Ionic 2
+* <a href="http://ionic.io/2">Ionic 2</a>
 * Angular 2
 * Algolia
+
+
+## Integrations
 * Zapier
+* ifttt
 * Pocket
 
 ## License
